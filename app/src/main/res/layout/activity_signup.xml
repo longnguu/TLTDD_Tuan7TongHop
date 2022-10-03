@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Signup">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/form"
         android:layout_width="match_parent"
@@ -163,13 +166,28 @@
                 android:id="@+id/btdk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/teal_200"
                 android:text="Đăng ký" />
         </LinearLayout>
-        <TextView
+        <LinearLayout
             android:id="@+id/linkbackdk"
             android:layout_width="match_parent"
+            android:background="@drawable/colorgradi"
             android:layout_height="30dp"
-            android:text="Back"/>
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Back"
+                />
+        </LinearLayout>
     </RelativeLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.tltdd_tuan7.Class.Adapter;
@@ -27,11 +29,20 @@ public class List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         listView = (ListView) findViewById(R.id.list_view);
-        items.add(new Items("Item 1","Information of item 1", "6",R.drawable.item1)) ;
-        items.add(new Items("Item 2","Information of item 2", "6",R.drawable.item2)) ;
-        items.add(new Items("Item 3","Information of item 3", "6",R.drawable.img)) ;
-        items.add(new Items("Item 4","Information of item 4", "6",R.drawable.img_1)) ;
-        items.add(new Items("Item 5","Information of item 5", "6",R.drawable.img_2)) ;
+        Button btthem = (Button) findViewById(R.id.bt_them);
+        EditText item_ten = (EditText) findViewById(R.id.edt_them);
+        EditText item_mota = (EditText) findViewById(R.id.edt_hint);
+        items.add(new Items("Quảng Trị","Quê",R.drawable.img)) ;
+        items.add(new Items("Hà Nội","Thủ đô nước CHXHCN Việt Nam",R.drawable.img_1)) ;
+        items.add(new Items("Đà Nẵng","Thành phố đáng sống",R.drawable.img_2)) ;
+        items.add(new Items("TP Hồ Chí Minh","Thành phố trực thuộc trung ương",R.drawable.img_3)) ;
+        btthem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.add(new Items(item_ten.getText().toString(),item_mota.getText().toString(),0));
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         adapter = new Adapter(List.this,items);
         listView.setAdapter(adapter);
@@ -54,19 +65,20 @@ public class List extends AppCompatActivity {
             }
         });
     }
+
     public void Xacnhanxoa(final int pos){
         AlertDialog.Builder alertDiaLog = new AlertDialog.Builder(List.this);
-        alertDiaLog.setTitle("Thong bao");
+        alertDiaLog.setTitle("Thông báo");
         alertDiaLog.setIcon(R.mipmap.ic_launcher);
-        alertDiaLog.setMessage("Ban co muon xoa");
-        alertDiaLog.setPositiveButton("Co", new DialogInterface.OnClickListener() {
+        alertDiaLog.setMessage("Bạn có muốn xóa "+items.get(pos).getTen()+" ?"    );
+        alertDiaLog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 items.remove(pos);
                 adapter.notifyDataSetChanged();
             }
         });
-        alertDiaLog.setNegativeButton("Khong", new DialogInterface.OnClickListener() {
+        alertDiaLog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

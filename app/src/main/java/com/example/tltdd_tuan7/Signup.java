@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tltdd_tuan7.Class.BTP;
@@ -22,7 +23,7 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        TextView linkback = (TextView) findViewById(R.id.linkbackdk);
+        LinearLayout linkback = (LinearLayout) findViewById(R.id.linkbackdk);
         AnhXa();
         btdk.setOnClickListener(new View.OnClickListener() {
             @Override

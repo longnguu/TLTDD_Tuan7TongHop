@@ -5,9 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".List">
-    <ListView
-        android:id="@+id/list_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lê Văn Long\n2050531200222"
+            android:fontFamily="@font/atma_medium"
+            android:gravity="center"
+            android:textColor="@color/teal_200"
+            android:textSize="30dp"/>
+        <EditText
+            android:id="@+id/edt_them"
+            android:layout_below="@+id/tv_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập tên ở đây"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/edt_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả"
+            android:layout_below="@id/edt_them"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/bt_them"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_hint"
+            android:text="Thêm" />
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bt_them"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
