@@ -1,14 +1,30 @@
 package com.example.tltdd_tuan7.Class;
 
-public class Items {
+import android.graphics.Bitmap;
+import android.net.Uri;
+
+import java.io.Serializable;
+
+public class Items  implements Serializable {
     String ten,mota;
     int img;
+    Bitmap bitmap;
 
-    public Items(String ten, String mota, int img) {
+    public Items(String ten, String mota, int img,Bitmap uri) {
         this.ten = ten;
         this.mota = mota;
         this.img = img;
+        this.bitmap=uri;
     }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setUri(Bitmap uri) {
+        this.bitmap = uri;
+    }
+
     public String getTen() {
         return ten;
     }

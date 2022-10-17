@@ -1,4 +1,4 @@
-package com.example.tltdd_tuan7.Class;
+package com.example.tltdd_tuan7.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -40,12 +40,17 @@ public class Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = activity.getLayoutInflater();
         view = inflater.inflate(R.layout.layout_item, null);
+
         TextView tvName = (TextView) view.findViewById(R.id.tv_name);
         TextView tvMota = (TextView) view.findViewById(R.id.tv_mota);
         ImageView imageView = (ImageView) view.findViewById(R.id.item_img);
+
         tvName.setText(items.get(i).getTen());
         tvMota.setText(items.get(i).getMota());
+        if (items.get(i).getImg()!=0)
         imageView.setImageResource(items.get(i).getImg());
+        else
+            imageView.setImageBitmap(items.get(i).getBitmap());
         return view;
     }
 }

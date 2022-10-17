@@ -1,6 +1,8 @@
 package com.example.tltdd_tuan7.Class;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String ten;
     private String ngaysinh;
     private String sdt;
