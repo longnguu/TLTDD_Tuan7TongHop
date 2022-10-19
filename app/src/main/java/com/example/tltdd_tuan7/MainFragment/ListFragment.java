@@ -1,10 +1,8 @@
 package com.example.tltdd_tuan7.MainFragment;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -111,11 +109,10 @@ public class ListFragment extends Fragment {
         imgthem = (ImageView) view.findViewById(R.id.imgthem);
         EditText item_ten = (EditText) view.findViewById(R.id.edt_them);
         EditText item_mota = (EditText) view.findViewById(R.id.edt_hint);
-        items.add(new Items("Quảng Trị","Quê",R.drawable.img,bm)) ;
+        items.add(new Items("Quảng Trị","Quê",R.drawable.img_4,bm)) ;
         items.add(new Items("Hà Nội","Thủ đô nước CHXHCN Việt Nam",R.drawable.img_1,bm)) ;
         items.add(new Items("Đà Nẵng","Thành phố đáng sống",R.drawable.img_2,bm)) ;
         items.add(new Items("TP Hồ Chí Minh","Thành phố trực thuộc trung ương",R.drawable.img_3,bm)) ;
-        item_mota.setText(String.valueOf(BTP.items.size()));
         if (BTP.items.size()==0) {
             BTP.items=items;
         }
