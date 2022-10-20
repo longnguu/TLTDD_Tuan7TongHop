@@ -5,18 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Detail">
+    <ImageView
+        android:id="@+id/imgviewdetail"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        />
     <TextView
-        android:id="@+id/thongtin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lê Văn Long\n2050531200222\n\nĐây là list item: "
-        android:gravity="center"
-        android:textSize="30dp"/>
-    <TextView
-        android:layout_below="@+id/thongtin"
+        android:layout_below="@id/imgviewdetail"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:id="@+id/detailtitle"/>
+    <Button
+        android:id="@+id/buttonbackdetail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Back"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buttonbk"
+        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

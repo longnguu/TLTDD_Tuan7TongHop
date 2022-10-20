@@ -5,12 +5,11 @@
         android:icon="@drawable/ic_baseline_home_24">
     </item>
     <item android:id="@+id/navfavourite"
-        android:title="Favourite"
+        android:title="List Favourite"
         android:icon="@drawable/ic_baseline_favorite_24">
     </item>
     <item android:id="@+id/navprofile"
         android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24">
     </item>
-
 </menu>

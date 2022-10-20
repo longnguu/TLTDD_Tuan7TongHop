@@ -61,7 +61,7 @@ public class Signin extends AppCompatActivity {
         //database.QueryData("drop table user");
         database.QueryData("CREATE TABLE IF NOT EXISTS User(id integer primary key autoincrement,ten varchar(100),ngaysinh varchar(100),sdt varchar(20),email varchar(100),cmnd varchar(20),tk varchar(100),mk varchar(100),diachi varchar(100),avata blob)");
         //database.QueryData("drop table sothic");
-        //database.QueryData("create table if not exists sothic(id integer primary key autoincrement,idus int, idst int, ten varchar(100),mota varchar(200),img blob)");
+        database.QueryData("create table if not exists sothic(id integer primary key autoincrement,idus int, idst int, ten varchar(100),mota varchar(200),img blob)");
         User duser = new User("Long","29/06/02","0123456789","levanlong@gmail.com","012345678","admin","admin");
 //        duser.setImage(hinhAnh);
         BTP.userList.add(duser);

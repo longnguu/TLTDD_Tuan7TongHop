@@ -1,5 +1,6 @@
 package com.example.tltdd_tuan7;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -132,7 +133,7 @@ public class Signup extends AppCompatActivity {
         btdk = (Button) findViewById(R.id.btdk);
         dcdk =(EditText) findViewById(R.id.diachidk);
     }
-    private byte[] imagemTratada(byte[] imagem_img){
+    private byte[] imagemTratada(@NonNull byte[] imagem_img){
 
         while (imagem_img.length > 500000){
             Bitmap bitmap = BitmapFactory.decodeByteArray(imagem_img, 0, imagem_img.length);

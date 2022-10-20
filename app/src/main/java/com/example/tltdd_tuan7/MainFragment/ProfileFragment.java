@@ -107,9 +107,10 @@ public class ProfileFragment extends Fragment {
         passpf.setText(user.getPassword());
         nspf.setText(user.getNgaysinh());
         emailpf.setText(user.getEmail());
+        if (user.getImage()!=null){
         InputStream is = new ByteArrayInputStream(user.getImage());
         bitmap = BitmapFactory.decodeStream(is);
-        avtpf.setImageBitmap(bitmap);
+        avtpf.setImageBitmap(bitmap);}
         diachipf.setText(user.getDiachi());
 
         avtpf.setOnClickListener(new View.OnClickListener() {

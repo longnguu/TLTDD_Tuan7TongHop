@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tltdd_tuan7.Adapter.Adapter;
+import com.example.tltdd_tuan7.Adapter.SlideModel;
 import com.example.tltdd_tuan7.Class.BTP;
 import com.example.tltdd_tuan7.Class.Items;
 import com.example.tltdd_tuan7.Detail;
@@ -30,6 +32,7 @@ import com.example.tltdd_tuan7.R;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +116,7 @@ public class ListFragment extends Fragment {
         items.add(new Items("Hà Nội","Thủ đô nước CHXHCN Việt Nam",R.drawable.img_1,bm)) ;
         items.add(new Items("Đà Nẵng","Thành phố đáng sống",R.drawable.img_2,bm)) ;
         items.add(new Items("TP Hồ Chí Minh","Thành phố trực thuộc trung ương",R.drawable.img_3,bm)) ;
+
         if (BTP.items.size()==0) {
             BTP.items=items;
         }
@@ -121,9 +125,18 @@ public class ListFragment extends Fragment {
         btthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BTP.items.add(new Items(item_ten.getText().toString(),item_mota.getText().toString(),0,bitmap));
-                item_ten.setText(bitmap.toString());
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                if (bitmap!=null){
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                byte[] hinhAnh = byteArrayOutputStream.toByteArray();
+                hinhAnh=imagemTratada(hinhAnh);
+                BTP.items.add(new Items(item_ten.getText().toString(),item_mota.getText().toString(),0,hinhAnh));
+                BTP.slideModelList.add(new SlideModel(0,hinhAnh,item_ten.getText().toString()));
+                }
+                else
+                    BTP.items.add(new Items(item_ten.getText().toString(),item_mota.getText().toString(),0));
                 adapter.notifyDataSetChanged();
+                HomeFragment.slideAdapter.notifyDataSetChanged();
             }
         });
         btca.setOnClickListener((new View.OnClickListener() {
@@ -139,7 +152,8 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), Detail.class);
-                intent.putExtra("dulieu",items.get(i).getTen());
+                Items item = BTP.items.get(i);
+                intent.putExtra("dulieu",item);
                 if (kt!=true)
                     startActivity(intent);
                 kt=false;
@@ -190,7 +204,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if(requestCode == 1 && data != null){
             uriimgt=data.getData();
             bitmap = null;
             try {
@@ -206,13 +220,15 @@ public class ListFragment extends Fragment {
     public void Xacnhanxoa(final int pos){
         AlertDialog.Builder alertDiaLog = new AlertDialog.Builder(getActivity());
         alertDiaLog.setTitle("Thông báo");
-        alertDiaLog.setIcon(R.mipmap.ic_launcher);
+        alertDiaLog.setIcon(R.drawable.icon_delete);
         alertDiaLog.setMessage("Bạn có muốn xóa "+items.get(pos).getTen()+" ?"    );
         alertDiaLog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                items.remove(pos);
+                BTP.items.remove(pos);
+                BTP.slideModelList.remove(pos);
                 adapter.notifyDataSetChanged();
+                HomeFragment.slideAdapter.notifyDataSetChanged();
             }
         });
         alertDiaLog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -222,6 +238,18 @@ public class ListFragment extends Fragment {
             }
         });
         alertDiaLog.show();
+
+    }
+    private byte[] imagemTratada(byte[] imagem_img){
+
+        while (imagem_img.length > 500000){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagem_img, 0, imagem_img.length);
+            Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth()*0.8), (int)(bitmap.getHeight()*0.8), true);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            imagem_img = stream.toByteArray();
+        }
+        return imagem_img;
 
     }
 }

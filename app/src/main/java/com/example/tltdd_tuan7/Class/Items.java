@@ -9,8 +9,34 @@ public class Items  implements Serializable {
     String ten,mota;
     int img;
     Bitmap bitmap;
+    byte[] anh;
 
-    public Items(String ten, String mota, int img,Bitmap uri) {
+    public Items(String ten, String mota, int img, byte[] anh) {
+        this.ten = ten;
+        this.mota = mota;
+        this.img = img;
+        this.anh = anh;
+    }
+
+    public Items(String ten, String mota, int img) {
+        this.ten = ten;
+        this.mota = mota;
+        this.img = img;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public byte[] getAnh() {
+        return anh;
+    }
+
+    public void setAnh(byte[] anh) {
+        this.anh = anh;
+    }
+
+    public Items(String ten, String mota, int img, Bitmap uri) {
         this.ten = ten;
         this.mota = mota;
         this.img = img;

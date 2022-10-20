@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpg"
         android:layout_width="match_parent"
@@ -18,8 +21,25 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu_bottom_nav"
-        app:itemBackground="@color/teal_200"
+        app:itemBackground="@color/bottomnav"
         app:itemIconTint="@color/custom_color_nav"
         app:itemTextColor="@color/custom_color_nav"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:gravity="right">
+
+        <ImageView
+            android:id="@+id/btsignout"
+            android:layout_margin="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_signout">
+
+        </ImageView>
+    </RelativeLayout>
 
 </RelativeLayout>
