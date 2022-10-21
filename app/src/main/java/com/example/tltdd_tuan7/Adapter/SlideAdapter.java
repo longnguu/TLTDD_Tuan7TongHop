@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.tltdd_tuan7.R;
@@ -19,9 +21,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-public class SlideAdapter extends PagerAdapter {
-    Context mContext;
+public class SlideAdapter extends PagerAdapter   {
     List<SlideModel> slideModels;
+    Context mContext;
 
     public SlideAdapter(Context mContext, List<SlideModel> slideModels) {
         this.mContext = mContext;

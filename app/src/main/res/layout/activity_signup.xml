@@ -6,10 +6,44 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundprofile1"
     tools:context=".Signup">
+    <LinearLayout
+        android:id="@+id/linkbackdk"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+            />
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="3dp"
+            android:textSize="20dp"
+            android:text="Back"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/atma_medium"
+        android:text="Signup"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="70dp"
         app:cardCornerRadius="30dp">
 
     <ScrollView
@@ -30,14 +64,7 @@
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="40dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/avtsi"
-                android:fontFamily="@font/atma_medium"
-                android:text="Signup"
-                android:textAlignment="center"
-                android:textSize="40dp" />
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -186,26 +213,6 @@
                 android:text="Đăng ký" />
 
 
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linkbackdk"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
-                />
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="3dp"
-                android:textSize="20dp"
-                android:text="Back"
-                />
         </LinearLayout>
     </RelativeLayout>
     </ScrollView>

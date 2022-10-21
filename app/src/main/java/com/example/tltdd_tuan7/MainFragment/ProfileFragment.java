@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment {
 
         user = BTP.user;
         AnhXa(view);
-        namepf.setText(user.getTen());
+        namepf.setText("  "+user.getTen());
         usernamepf.setText(user.getUsername());
         sdtpf.setText(user.getSdt());
         passpf.setText(user.getPassword());

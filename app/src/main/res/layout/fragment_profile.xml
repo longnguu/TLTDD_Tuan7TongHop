@@ -26,7 +26,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="250dp"
                 android:layout_marginTop="20dp"
@@ -34,16 +34,16 @@
                 tools:ignore="MissingConstraints">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:layout_gravity="center"
                     app:cardCornerRadius="250dp"
                     >
 
                     <ImageView
                         android:id="@+id/avtprofile"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/avata" />
 
@@ -51,19 +51,19 @@
 
             </androidx.cardview.widget.CardView>
             </RelativeLayout>
-                <TextView
-                    android:id="@+id/namepf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Name"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/atma_medium"
-                    android:textSize="30dp"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvprofile"
-                    tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/namepf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/vollkorn_sc_bold"
+                android:text="Name"
+                android:textColor="@color/teal_700"
+                android:textSize="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvprofile"
+                tools:ignore="MissingConstraints" />
 
 
 

@@ -1,6 +1,8 @@
 package com.example.tltdd_tuan7.MainFragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.provider.Settings;
@@ -29,6 +32,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.relex.circleindicator.CircleIndicator3;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -41,10 +46,12 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ViewPager sliderBanner;
+    CircleIndicator3 circleIndicator3;
+
     public static SlideAdapter slideAdapter;
     public static List<SlideModel> slideModelList= new ArrayList<SlideModel>();
     private Timer timer;
-    int current = 2;
+    int current = 0;
     final private  long delay=3000;
     final private long PERIOD=3000;
     // TODO: Rename and change types of parameters
@@ -86,7 +93,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -98,7 +104,7 @@ public class HomeFragment extends Fragment {
         slideModelList.add(new SlideModel(R.drawable.img_4,null,"Quảng Trị"));
         slideModelList.add(new SlideModel(R.drawable.img_1,null,"Hà Nội"));
         slideModelList.add(new SlideModel(R.drawable.img_2,null,"Đà Nẵng"));
-        slideModelList.add(new SlideModel(R.drawable.img_3,null,"Huế"));
+        slideModelList.add(new SlideModel(R.drawable.img_3,null,"Thành phố Hồ Chí Minh"));
         CardView cv2= (CardView) view.findViewById(R.id.cardviewhomefr2);
         CardView cv1= (CardView) view.findViewById(R.id.cardviewhomefr1);
         CardView cv3= (CardView) view.findViewById(R.id.cardviewhomefr3);
@@ -124,6 +130,7 @@ public class HomeFragment extends Fragment {
         cv3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
         cv4.setOnClickListener(new View.OnClickListener() {
@@ -138,8 +145,12 @@ public class HomeFragment extends Fragment {
         }
 
         System.out.println("a");
+        sliderBanner.setOffscreenPageLimit(3);
+        sliderBanner.setClipToPadding(false);
+        sliderBanner.setClipChildren(false);
         slideAdapter = new SlideAdapter(getActivity(),BTP.slideModelList);
         sliderBanner.setAdapter(slideAdapter);
+
 //        autoSlide();
 //        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
 //            @Override
@@ -164,7 +175,6 @@ public class HomeFragment extends Fragment {
         sliderBanner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                pageLooper();
                 stopBanner();
                 if (motionEvent.getAction()==MotionEvent.ACTION_UP){
                     startBanner();
@@ -184,9 +194,18 @@ public class HomeFragment extends Fragment {
                 current = sliderBanner.getCurrentItem();
                 if (current< BTP.slideModelList.size()-1){
                     current ++;
-                    sliderBanner.setCurrentItem(current);
+                    try {
+                        sliderBanner.setCurrentItem(current);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }else  {
-                    sliderBanner.setCurrentItem(0);
+                    try {
+                        sliderBanner.setCurrentItem(0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };
@@ -196,7 +215,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 handler.post(update);
             }
-        },500,3000);
+        },500,2000);
     }
     private void stopBanner(){
         if (timer!=null) timer.cancel();

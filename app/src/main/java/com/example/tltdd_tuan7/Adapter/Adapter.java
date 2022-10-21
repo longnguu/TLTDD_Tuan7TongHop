@@ -55,10 +55,10 @@ public class Adapter extends BaseAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.item_img);
         RelativeLayout cvlist = (RelativeLayout) view.findViewById(R.id.cvlist);
 
-        if (i%2==0){
+        if (i%2!=0){
             cvlist.setBackgroundColor(ContextCompat.getColor(activity,R.color.bottomnav));
         }else {
-            cvlist.setBackgroundColor(ContextCompat.getColor(activity,R.color.teal_200));
+            cvlist.setBackgroundColor(ContextCompat.getColor(activity,R.color.white));
         }
         tvName.setText(items.get(i).getTen());
         tvMota.setText(items.get(i).getMota());

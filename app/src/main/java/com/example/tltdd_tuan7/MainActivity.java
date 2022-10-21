@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.tltdd_tuan7.Adapter.ViewPageAdapter;
 import com.example.tltdd_tuan7.Class.BTP;
+import com.example.tltdd_tuan7.MainFragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

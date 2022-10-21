@@ -11,16 +11,29 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/linervpp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
     <androidx.viewpager.widget.ViewPager
         android:layout_marginTop="30dp"
         android:id="@+id/viewpagerhome"
         android:layout_width="match_parent"
-        android:layout_height="330dp"/>
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:layout_height="300dp"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_below="@+id/linervpp"
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewpagerhome"
-            android:layout_marginTop="25dp"
+
             android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,7 +103,9 @@
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
         </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

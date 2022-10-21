@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_margin="30dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,7 +30,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/atma_medium"
+                android:fontFamily="@font/vollkorn_sc_bold"
                 android:text="Name"
                 android:textSize="30dp" />
             <TextView
