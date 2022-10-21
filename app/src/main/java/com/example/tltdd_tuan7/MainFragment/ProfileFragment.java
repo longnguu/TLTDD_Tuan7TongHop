@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,11 +25,14 @@ import android.widget.Toast;
 
 import com.example.tltdd_tuan7.Class.BTP;
 import com.example.tltdd_tuan7.Class.User;
+import com.example.tltdd_tuan7.MainActivity;
 import com.example.tltdd_tuan7.R;
+import com.example.tltdd_tuan7.Signin;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -51,8 +55,10 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
     Uri uriimgt;
     Bitmap bitmap;
+    User usss;
 
-    TextView namepf,sdtpf,usernamepf,emailpf,passpf,nspf,diachipf;
+    TextView namepf,sdtpf,usernamepf,emailpf,passpf,nspf,diachipf,cmdpf;
+    Button btupdate;
     ImageView avtpf;
     User user;
 
@@ -112,6 +118,39 @@ public class ProfileFragment extends Fragment {
         bitmap = BitmapFactory.decodeStream(is);
         avtpf.setImageBitmap(bitmap);}
         diachipf.setText(user.getDiachi());
+        cmdpf.setText(user.getCmnd());
+
+        btupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                usss=new User(namepf.getText().toString(),nspf.getText().toString(),sdtpf.getText().toString(),emailpf.getText().toString(),cmdpf.getText().toString(),usernamepf.getText().toString(),passpf.getText().toString());
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) avtpf.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                byte[] hinhAnh = byteArrayOutputStream.toByteArray();
+                hinhAnh=imagemTratada(hinhAnh);
+                usss.setImage(hinhAnh);
+                usss.setDiachi(diachipf.getText().toString());
+                Boolean insertdb = Signin.database.update_img(usss);
+                BTP.user.setTen(usss.getTen());
+                BTP.user.setCmnd(usss.getCmnd());
+                BTP.user.setEmail(usss.getCmnd());
+                BTP.user.setUsername(usss.getUsername());
+                BTP.user.setNgaysinh(usss.getNgaysinh());
+                BTP.user.setPassword(usss.getPassword());
+                BTP.user.setSdt(usss.getSdt());
+                BTP.user.setImage(usss.getImage());
+                BTP.user.setDiachi(usss.getDiachi());
+                System.out.println(BTP.user.getSdt());
+                if (insertdb==true)
+                Toast.makeText(getContext(),"Đã cập nhật",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         avtpf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +206,8 @@ public class ProfileFragment extends Fragment {
         emailpf = (TextView) view.findViewById(R.id.emailpf);
         diachipf = (TextView) view.findViewById(R.id.diachipf);
         avtpf = (ImageView) view.findViewById(R.id.avtprofile);
+        cmdpf = (TextView) view.findViewById(R.id.cmndpf);
+        btupdate = (Button) view.findViewById(R.id.btcapnhat);
     }
     private void CapQuyenCA() {
         PermissionListener permissionlistener = new PermissionListener() {
@@ -213,5 +254,17 @@ public class ProfileFragment extends Fragment {
             }
             avtpf.setImageBitmap(bitmap);
         }
+    }
+    private byte[] imagemTratada(@NonNull byte[] imagem_img){
+
+        while (imagem_img.length > 500000){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagem_img, 0, imagem_img.length);
+            Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth()*0.8), (int)(bitmap.getHeight()*0.8), true);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            imagem_img = stream.toByteArray();
+        }
+        return imagem_img;
+
     }
 }

@@ -24,15 +24,8 @@ public class Detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         TextView tv = (TextView) findViewById(R.id.detailtitle);
+        TextView tv1 = (TextView) findViewById(R.id.motadetail);
         ImageView imgv = (ImageView) findViewById(R.id.imgviewdetail);
-        Button bt = (Button) findViewById(R.id.buttonbackdetail);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Detail.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
         Intent intent1= getIntent();
         Items item = (Items) intent1.getSerializableExtra("dulieu");
         if (item.getImg()!=0)
@@ -44,5 +37,6 @@ public class Detail extends AppCompatActivity {
         }
 
         tv.setText(item.getTen());
+        tv1.setText(item.getMota());
     }
 }

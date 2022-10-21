@@ -12,7 +12,16 @@ public class User implements Serializable {
     private String password;
     private String diachi;
     private byte[] image;
+    public Boolean checkfinger;
     public User() {
+    }
+
+    public Boolean getCheckfinger() {
+        return checkfinger;
+    }
+
+    public void setCheckfinger(Boolean checkfinger) {
+        this.checkfinger = checkfinger;
     }
 
     public byte[] getImage() {

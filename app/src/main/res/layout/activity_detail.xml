@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background8"
     tools:context=".Detail">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imgviewdetail"
         android:layout_width="300dp"
@@ -17,14 +24,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
+        android:textAlignment="center"
         android:id="@+id/detailtitle"/>
-    <Button
-        android:id="@+id/buttonbackdetail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Back"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/buttonbk"
-        android:layout_marginBottom="20dp"/>
 
-</RelativeLayout>
+    <TextView
+        android:layout_below="@id/detailtitle"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:id="@+id/motadetail"/>
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -230,7 +230,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 handler.post(update);
             }
-        },100,3000);
+        },100,1000);
     }
 
     @Override

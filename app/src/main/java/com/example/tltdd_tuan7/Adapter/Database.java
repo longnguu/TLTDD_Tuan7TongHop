@@ -1,5 +1,6 @@
 package com.example.tltdd_tuan7.Adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,7 +24,7 @@ public class Database extends SQLiteOpenHelper {
 
     public void insert_img(User us){
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO USER VALUES(null,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USER VALUES(null,?,?,?,?,?,?,?,?,?,?)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
         statement.bindString(1,us.getTen());
@@ -35,8 +36,35 @@ public class Database extends SQLiteOpenHelper {
         statement.bindString(7,us.getPassword());
         statement.bindString(8,us.getDiachi());
         statement.bindBlob(9,us.getImage());
+        statement.bindLong(10,0);
 
         statement.executeInsert();
+    }
+    public Boolean update_img(User us){
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("sdt",us.getSdt());
+        contentValues.put("email",us.getEmail());
+        contentValues.put("cmnd",us.getCmnd());
+        contentValues.put("ngaysinh",us.getNgaysinh());
+        contentValues.put("diachi",us.getDiachi());
+        contentValues.put("avata",us.getImage());
+        contentValues.put("mk",us.getPassword());
+        database.update("user",contentValues,"tk = ?",new String[]{us.getUsername()});
+        return true;
+
+//        String sql = "update user set sdt = ? , email = ? , cmnd = ? ,ngaysinh = ?, diachi = ?, avata = ? where tk = ?";
+//        SQLiteStatement statement = database.compileStatement(sql);
+//        statement.clearBindings();
+//        statement.bindString(1,us.getSdt());
+//        statement.bindString(2,us.getEmail());
+//        statement.bindString(3,us.getNgaysinh());
+//        statement.bindString(4,us.getDiachi());
+//        statement.bindBlob(5,us.getImage());
+//        statement.bindString(6,us.getUsername());
+
+
+//        statement.executeUpdateDelete();
     }
     public Cursor GetData(String sql){
         SQLiteDatabase db = getReadableDatabase();
@@ -45,8 +73,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE user(id text primary key, name text not null)";
-        sqLiteDatabase.execSQL(sql);
+//        String sql = "CREATE TABLE user(id text primary key, name text not null)";
+//        sqLiteDatabase.execSQL(sql);
     }
 
     @Override

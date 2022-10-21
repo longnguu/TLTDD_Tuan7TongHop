@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -57,19 +58,22 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 us=new User(namedk.getText().toString(),nsdk.getText().toString(),sdtdk.getText().toString(),emaildk.getText().toString(),cmnddk.getText().toString(),userdk.getText().toString(),passdk.getText().toString());
+                Cursor cursorr = Signin.database.GetData("Select tk from user where tk ='"+us.getUsername()+"'");
+                if (cursorr.getCount()==0){
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                    byte[] hinhAnh = byteArrayOutputStream.toByteArray();
+                    hinhAnh=imagemTratada(hinhAnh);
+                    us.setImage(hinhAnh);
+                    us.setDiachi(dcdk.getText().toString());
+                    Signin.database.insert_img(us);
+                    BTP.userList.add(us);
+                    Intent intent = new Intent(Signup.this,Signin.class);
+                    startActivity(intent);
+                }else Toast.makeText(Signup.this,"Đã tồn tại",Toast.LENGTH_SHORT).show();
 
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-                byte[] hinhAnh = byteArrayOutputStream.toByteArray();
-                hinhAnh=imagemTratada(hinhAnh);
-                us.setImage(hinhAnh);
-                us.setDiachi(dcdk.getText().toString());
-                Signin.database.insert_img(us);
-                BTP.userList.add(us);
-                Intent intent = new Intent(Signup.this,Signin.class);
-                startActivity(intent);
             }
         });
         linkback.setOnClickListener(new View.OnClickListener() {
@@ -145,4 +149,5 @@ public class Signup extends AppCompatActivity {
         return imagem_img;
 
     }
+
 }
